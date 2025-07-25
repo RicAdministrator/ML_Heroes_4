@@ -1,0 +1,31 @@
+# Ignore build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code settings
+.vscode/
+.vs/
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# ASP.NET generated files
+*.db
+*.pdb
+
+# Publish output
+publish/
