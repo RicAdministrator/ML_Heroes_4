@@ -1,0 +1,74 @@
+<div id="dvSearch" ng-show="activeSection == 'search'">
+    <a class="link-style" ng-click="addClicked()">Add Role</a>
+    <div class="w3-panel w3-pale-green w3-border" ng-show="successMsg">
+        <h3>Success!</h3>
+        <p>{{ successMsg }}</p>
+    </div>
+    <div class="w3-panel w3-pale-red w3-border" ng-show="deleteErrorMsg">
+        <h3>Please correct the following errors:</h3>
+        <p>{{ deleteErrorMsg }}</p>
+    </div>
+    <table style="margin-top: 5px;">
+        <thead>
+            <tr style="background-color: #2196f3;">
+                <th>Logo</th>
+                <th>Role</th>
+                <th>Primary Function</th>
+                <th>Key Attributes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="r in rolesData">
+                <td>
+                    <img ng-src="{{ r.logoUrl || 'favicon.ico' }}" alt="Avatar" style="height:75px;"
+                        onerror="this.onerror=null;this.src='favicon.ico';" />
+                </td>
+                <td>{{ r.heroRole }}</td>
+                <td>{{ r.primaryFunction }}</td>
+                <td>{{ r.keyAttributes }}</td>
+                <td>
+                    <button class="w3-btn w3-blue"
+                        ng-click="updateClicked(r.id, r.heroRole, r.logoUrl, r.primaryFunction, r.keyAttributes)">Update</button>
+                    &nbsp;
+                    <button class="w3-btn w3-blue" ng-click="deleteClicked(r.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="dvUpsert" ng-show="activeSection == 'upsert'">
+    <div class="w3-panel w3-pale-red w3-border" ng-show="saveErrors">
+        <h3>Please correct the following errors:</h3>
+        <p>{{ saveErrors }}</p>
+    </div>
+    <div class="w3-card-4">
+        <div class="w3-container w3-black" style="margin-bottom: 5px;">
+            <h2>{{roleId ? 'Update Role' : 'Add Role'}}</h2>
+        </div>
+        <form class="w3-container">
+            <div style="margin-bottom: 20px;">
+                <label for="txtRole">Role</label>
+                <input id="txtRole" class="w3-input w3-border" type="text" maxlength="50" ng-model="heroRoleModel">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="txtLogoURL">Logo URL</label>
+                <input id="txtLogoURL" class="w3-input w3-border" type="text" maxlength="150" ng-model="logoUrlModel">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="txtPrimaryFunction">Primary Function</label>
+                <input id="txtPrimaryFunction" class="w3-input w3-border" type="text" maxlength="150"
+                    ng-model="primaryFunctionModel">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="txtKeyAttributes">Key Attributes</label>
+                <input id="txtKeyAttributes" class="w3-input w3-border" type="text" maxlength="150"
+                    ng-model="keyAttributesModel">
+            </div>
+            <div style="margin-bottom: 10px">
+                <button class="w3-btn w3-black" ng-click="saveClicked()">Save</button>
+                <button class="w3-btn w3-black" style="margin-left:5px;" ng-click="cancelClicked()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

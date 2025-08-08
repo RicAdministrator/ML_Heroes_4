@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+<body ng-app="myApp" ng-controller="navCtrl">
+    <div ng-include="'Navigation.htm'"></div>
+    <div ng-view style="margin: 20px; font-family: arial, sans-serif;"></div>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when("/", {
+                    templateUrl: "Heroes.htm",
+                })
+                .when("/roles", {
+                    templateUrl: "Roles.htm",
+                    controller: "roleCtrl"
+                });
+        });
+        app.controller("parisCtrl", function ($scope) {
+            $scope.msg = "I love Paris";
+        });
+
+    </script>
+
+    <script src="navCtrl.js"></script>
+    <script src="roleCtrl.js"></script>
+
+</body>
+
+</html>
