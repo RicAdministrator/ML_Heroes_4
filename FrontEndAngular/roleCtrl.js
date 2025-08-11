@@ -33,13 +33,13 @@ app.controller("roleCtrl", function ($scope, $http) {
 
     $scope.resetUpsertForm = function () {
         $scope.roleId = null;
+
         $scope.heroRoleModel = "";
         $scope.logoUrlModel = "";
         $scope.primaryFunctionModel = "";
         $scope.keyAttributesModel = "";
 
         $scope.saveErrors = "";
-        $scope.deleteErrorMsg = "";
     }
 
     $scope.saveClicked = function () {
@@ -123,6 +123,7 @@ app.controller("roleCtrl", function ($scope, $http) {
                         })
                         .then(function (response) {
                             $scope.rolesData = response.data;
+                            window.scrollTo({ top: 0, behavior: "smooth" });
                         })
                         .catch(function (error) {
                             console.error("Failed to delete role:", error);
@@ -136,12 +137,28 @@ app.controller("roleCtrl", function ($scope, $http) {
     }
 
     $scope.resetSearchMessages = function () {
-        this.successMsg = "";
-        this.deleteErrorMsg = "";
+        $scope.successMsg = "";
+        $scope.deleteErrorMsg = "";
+    }
+
+    $scope.highlightNavigation = function () {
+        const navHeroes = document.getElementById("navHeroes");
+        if (navHeroes) navHeroes.classList.remove("w3-blue");
+
+        const navHeroesSmall = document.getElementById("navHeroesSmall");
+        if (navHeroesSmall) navHeroesSmall.classList.remove("w3-blue");
+
+        const navRoles = document.getElementById("navRoles");
+        if (navRoles) navRoles.classList.add("w3-blue");
+
+        const navRolesSmall = document.getElementById("navRolesSmall");
+        if (navRolesSmall) navRolesSmall.classList.add("w3-blue");
     }
 
     $scope.rolesData = [];
     $scope.getRolesData();
+
+    $scope.highlightNavigation();
 
     $scope.activeSection = "search";
 

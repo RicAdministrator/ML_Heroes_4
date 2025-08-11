@@ -16,21 +16,18 @@
             $routeProvider
                 .when("/", {
                     templateUrl: "Heroes.htm",
+                    controller: "heroCtrl"
                 })
                 .when("/roles", {
                     templateUrl: "Roles.htm",
                     controller: "roleCtrl"
                 });
         });
-        app.controller("parisCtrl", function ($scope) {
-            $scope.msg = "I love Paris";
-        });
-
     </script>
 
     <script src="navCtrl.js"></script>
+    <script src="heroCtrl.js"></script>
     <script src="roleCtrl.js"></script>
-
 </body>
 
 </html>

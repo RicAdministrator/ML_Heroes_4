@@ -1,1 +1,81 @@
-<h1>Heroes</h1>
+<div id="dvSearch" ng-show="activeSection == 'search'">
+    <a class="link-style" ng-click="addClicked()">Add Hero</a>
+    <div class="w3-panel w3-pale-green w3-border" ng-show="successMsg">
+        <h3>Success!</h3>
+        <p>{{ successMsg }}</p>
+    </div>
+    <table style="margin-top: 5px;table-layout: fixed;">
+        <thead>
+            <tr style="background-color: #2196f3;">
+                <th>Image</th>
+                <th>Name</th>
+                <th>Roles</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="h in heroesData">
+                <td>
+                    <img ng-src="{{ h.imageUrl || 'favicon.ico' }}" alt="Avatar" style="height:150px;"
+                        onerror="this.onerror=null;this.src='favicon.ico';" />
+                </td>
+                <td>{{ h.name }}</td>
+                <td>
+                    {{ getRoleNames(h) }}
+                </td>
+                <td>{{ h.description }}</td>
+                <td>
+                    <button class="w3-btn w3-blue"
+                        ng-click="updateClicked(h.id, h.name, h.imageUrl, h.description, h.roles)">Update</button>
+                    &nbsp;
+                    <button class="w3-btn w3-blue" ng-click="deleteClicked(h.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="dvUpsert" ng-show="activeSection == 'upsert'">
+    <div class="w3-panel w3-pale-red w3-border" ng-show="saveErrors.length > 0">
+        <h3>Please correct the following errors:</h3>
+        <div ng-repeat="se in saveErrors">
+            {{se}}
+        </div>
+        <p />
+    </div>
+    <div class="w3-card-4">
+        <div class="w3-container w3-black" style="margin-bottom: 5px;">
+            <h2>{{heroId ? 'Update Hero' : 'Add Hero'}}</h2>
+        </div>
+        <form class="w3-container">
+            <div style="margin-bottom: 20px;">
+                <label for="txtName">Name</label>
+                <input id="txtName" class="w3-input w3-border" type="text" maxlength="50" ng-model="nameModel">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="txtImageURL">Image URL</label>
+                <input id="txtImageURL" class="w3-input w3-border" type="text" maxlength="150" ng-model="imageUrlModel">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div ref="divRoles">
+                    Roles
+                    <br />
+                    <div ng-repeat="r in rolesData" style="float:left;">
+                        <input type="checkbox" id="chkRole{{r.id}}" class="w3-check" ng-model="roleIdsModel[r.id]"
+                            ng-true-value="{{r.id}}" ng-false-value="undefined" style="margin-right:5px;" />
+                        <label for="chkRole{{r.id}}" style="margin-right:35px;">{{ r.heroRole }}</label>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom: 20px; clear:left; padding-top: 20px;">
+                <label for="txtDescription">Description</label>
+                <input id="txtDescription" class="w3-input w3-border" type="text" maxlength="150"
+                    ng-model="descriptionModel">
+            </div>
+            <div style="margin-bottom: 10px">
+                <button class="w3-btn w3-black" ng-click="saveClicked()">Save</button>
+                <button class="w3-btn w3-black" style="margin-left:5px;" ng-click="cancelClicked()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
