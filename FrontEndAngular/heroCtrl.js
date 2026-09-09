@@ -50,6 +50,23 @@ app.controller("heroCtrl", function ($scope, $http) {
             && (!descriptionSearch || (hero.description || '').toLowerCase().includes(descriptionSearch));
     };
 
+    $scope.sortHeroesBy = function (field) {
+        if ($scope.heroSortField === field) {
+            $scope.heroSortReverse = !$scope.heroSortReverse;
+        } else {
+            $scope.heroSortField = field;
+            $scope.heroSortReverse = false;
+        }
+    };
+
+    $scope.heroSortValue = function (hero) {
+        if ($scope.heroSortField === 'roles') {
+            return $scope.getRoleNames(hero).toLowerCase();
+        }
+
+        return (hero[$scope.heroSortField] || '').toLowerCase();
+    };
+
     $scope.resetSearchMessages = function () {
         $scope.successMsg = "";
     }
@@ -198,6 +215,8 @@ app.controller("heroCtrl", function ($scope, $http) {
     $scope.nameSearchModel = "";
     $scope.roleSearchModel = "";
     $scope.descriptionSearchModel = "";
+    $scope.heroSortField = "name";
+    $scope.heroSortReverse = false;
 
     $scope.heroId = null;
 

@@ -30,3 +30,9 @@ tr:nth-child(even) {
     color: red;
     cursor: pointer;
 }
+
+.sortable-header {
+    cursor: pointer;    
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}

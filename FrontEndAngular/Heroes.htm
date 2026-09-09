@@ -25,14 +25,14 @@
         <thead>
             <tr style="background-color: #2196f3;">
                 <th>Image</th>
-                <th>Name</th>
-                <th>Roles</th>
-                <th>Description</th>
+                <th class="sortable-header" ng-click="sortHeroesBy('name')">Name <span ng-if="heroSortField === 'name'">({{ heroSortReverse ? 'descending' : 'ascending' }})</span></th>
+                <th class="sortable-header" ng-click="sortHeroesBy('roles')">Roles <span ng-if="heroSortField === 'roles'">({{ heroSortReverse ? 'descending' : 'ascending' }})</span></th>
+                <th class="sortable-header" ng-click="sortHeroesBy('description')">Description <span ng-if="heroSortField === 'description'">({{ heroSortReverse ? 'descending' : 'ascending' }})</span></th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="h in heroesData | filter:heroMatchesSearch">
+            <tr ng-repeat="h in heroesData | filter:heroMatchesSearch | orderBy:heroSortValue:heroSortReverse">
                 <td>
                     <img ng-src="{{ h.imageUrl || 'favicon.ico' }}" alt="Avatar" style="height:150px;"
                         onerror="this.onerror=null;this.src='favicon.ico';" />
