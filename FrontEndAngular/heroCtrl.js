@@ -40,6 +40,16 @@ app.controller("heroCtrl", function ($scope, $http) {
         return hero.roles.map(function (r) { return r.heroRole; }).join(' / ');
     };
 
+    $scope.heroMatchesSearch = function (hero) {
+        const nameSearch = ($scope.nameSearchModel || '').trim().toLowerCase();
+        const roleSearch = ($scope.roleSearchModel || '').trim().toLowerCase();
+        const descriptionSearch = ($scope.descriptionSearchModel || '').trim().toLowerCase();
+
+        return (!nameSearch || (hero.name || '').toLowerCase().includes(nameSearch))
+            && (!roleSearch || $scope.getRoleNames(hero).toLowerCase().includes(roleSearch))
+            && (!descriptionSearch || (hero.description || '').toLowerCase().includes(descriptionSearch));
+    };
+
     $scope.resetSearchMessages = function () {
         $scope.successMsg = "";
     }
@@ -185,6 +195,9 @@ app.controller("heroCtrl", function ($scope, $http) {
     $scope.imageUrlModel = "";
     $scope.roleIdsModel = {};
     $scope.descriptionModel = "";
+    $scope.nameSearchModel = "";
+    $scope.roleSearchModel = "";
+    $scope.descriptionSearchModel = "";
 
     $scope.heroId = null;
 

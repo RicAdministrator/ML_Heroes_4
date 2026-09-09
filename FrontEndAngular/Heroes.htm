@@ -4,6 +4,23 @@
         <h3>Success!</h3>
         <p>{{ successMsg }}</p>
     </div>
+    <div class="w3-row-padding" style="margin: 10px -8px 5px;">
+        <div class="w3-third">
+            <label for="txtSearchName">Name</label>
+            <input id="txtSearchName" class="w3-input w3-border" type="text" ng-model="nameSearchModel"
+                placeholder="Search by name">
+        </div>
+        <div class="w3-third">
+            <label for="txtSearchRole">Roles</label>
+            <input id="txtSearchRole" class="w3-input w3-border" type="text" ng-model="roleSearchModel"
+                placeholder="Search by role">
+        </div>
+        <div class="w3-third">
+            <label for="txtSearchDescription">Description</label>
+            <input id="txtSearchDescription" class="w3-input w3-border" type="text"
+                ng-model="descriptionSearchModel" placeholder="Search by description">
+        </div>
+    </div>
     <table style="margin-top: 5px;table-layout: fixed;">
         <thead>
             <tr style="background-color: #2196f3;">
@@ -15,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="h in heroesData">
+            <tr ng-repeat="h in heroesData | filter:heroMatchesSearch">
                 <td>
                     <img ng-src="{{ h.imageUrl || 'favicon.ico' }}" alt="Avatar" style="height:150px;"
                         onerror="this.onerror=null;this.src='favicon.ico';" />
