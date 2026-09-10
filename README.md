@@ -16,7 +16,7 @@ Create Single Migration File Then DropCreate DB:
 6. A confirmation will appear, input "y" then press enter
 7. In SSMS, check if HeroDb was deleted
 8. Package Manager Console > Run "Update-Database". This will create the db.
-9. Check tables
+9. Check tables using ML_Heroes_4\SqlQueries\queries.sql
 
 How to Drop Create a DB:
 1. Package Manager Console > Run "cls"
@@ -24,7 +24,7 @@ How to Drop Create a DB:
 3. A confirmation will appear, input "y" then press enter
 4. In SSMS, check if db was deleted
 5. Package Manager Console > Run "Update-Database". This will create the db.
-6. Check tables
+6. Check tables using ML_Heroes_4\SqlQueries\queries.sql
 
 ## API
 How to Run Scalar to Test Endpoints:
