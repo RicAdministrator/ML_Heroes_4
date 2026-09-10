@@ -7,14 +7,14 @@ Tech Stack:
 2. FrontEnd - Angular, Node.js, Javascript, W3.css, CSS
 
 ## Database
-How to Create a Single Migration File and Check DB:
+Create Single Migration File Then DropCreate DB:
 1. Package Manager Console > Run "cls"
 2. In windows file explorer, delete all files in Migrations folder
 3. Package Manager Console > Run "Add-Migration Initial"
 4. Check Migrations folder
 5. Package Manager Console > Run "Drop-Database"
 6. A confirmation will appear, input "y" then press enter
-7. In SSMS, check if db was deleted
+7. In SSMS, check if [HeroDb] db was deleted
 8. Package Manager Console > Run "Update-Database". This will create the db.
 9. Check tables
 
