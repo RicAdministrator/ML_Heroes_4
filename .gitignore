@@ -31,4 +31,4 @@ packages/
 publish/
 
 # Uploaded hero images
-# /WebApi/WebApi/wwwroot/uploads/heroes/
+/WebApi/WebApi/wwwroot/uploads/heroes/
