@@ -14,7 +14,7 @@ Create Single Migration File Then DropCreate DB:
 4. Check Migrations folder
 5. Package Manager Console > Run "Drop-Database"
 6. A confirmation will appear, input "y" then press enter
-7. In SSMS, check if [HeroDb] db was deleted
+7. In SSMS, check if HeroDb was deleted
 8. Package Manager Console > Run "Update-Database". This will create the db.
 9. Check tables
 
