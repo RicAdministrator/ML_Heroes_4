@@ -72,12 +72,12 @@ namespace WebApi.Migrations
                 columns: new[] { "Id", "Description", "ImageUrl", "Name" },
                 values: new object[,]
                 {
-                    { 1, "A mysterious creature that can split into many smaller ones.", "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_642/100_8b401d50920f2359060a9c7a3c833df1.png", "Gloo" },
-                    { 2, "A legendary Sacred Beast that can take the form of a ranbunctious young man.", "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png", "Lukas" },
-                    { 3, "A scholar that wanders the universe with split souls to save his daughter.", "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_0495066df0d828c149e7fe89aa63078b.png", "Nolan" },
-                    { 4, "A mysterious young woman who guides the ember butterflies using her Lantern ...", "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_13cfeec4bec7a27a09677e519f1ef9d2.png", "Zhuxin" },
-                    { 5, "Leader of the Scarlet Sect, in the Scarlet Shadow of the Cadia Riverlands.", "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_85d213390613bbc09220cf1d9f64c5c0.png", "Hanabi" },
-                    { 6, "Adopted daughter of House Vance, a clandestine sniper.", "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f4f42410c90f84e4d46b129d5e8887e8.png", "Lesley" }
+                    { 1, "A mysterious creature that can split into many smaller ones.", "https://localhost:7179/uploads/heroes/100_8b401d50920f2359060a9c7a3c833df1.png", "Gloo" },
+                    { 2, "A legendary Sacred Beast that can take the form of a ranbunctious young man.", "https://localhost:7179/uploads/heroes/100_454c13b2de7b7d1a20fbf553c620510d.png", "Lukas" },
+                    { 3, "A scholar that wanders the universe with split souls to save his daughter.", "https://localhost:7179/uploads/heroes/100_0495066df0d828c149e7fe89aa63078b.png", "Nolan" },
+                    { 4, "A mysterious young woman who guides the ember butterflies using her Lantern ...", "https://localhost:7179/uploads/heroes/100_13cfeec4bec7a27a09677e519f1ef9d2.png", "Zhuxin" },
+                    { 5, "Leader of the Scarlet Sect, in the Scarlet Shadow of the Cadia Riverlands.", "https://localhost:7179/uploads/heroes/100_85d213390613bbc09220cf1d9f64c5c0.png", "Hanabi" },
+                    { 6, "Adopted daughter of House Vance, a clandestine sniper.", "https://localhost:7179/uploads/heroes/100_f4f42410c90f84e4d46b129d5e8887e8.png", "Lesley" }
                 });
 
             migrationBuilder.InsertData(

@@ -44,7 +44,7 @@
                 <td>{{ h.description }}</td>
                 <td>
                     <button class="w3-btn w3-blue"
-                        ng-click="updateClicked(h.id, h.name, h.imageUrl, h.description, h.roles)">Update</button>
+                        ng-click="updateClicked(h.id, h.name, h.description, h.roles)">Update</button>
                     &nbsp;
                     <button class="w3-btn w3-blue" ng-click="deleteClicked(h.id)">Delete</button>
                 </td>
@@ -70,8 +70,10 @@
                 <input id="txtName" class="w3-input w3-border" type="text" maxlength="50" ng-model="nameModel">
             </div>
             <div style="margin-bottom: 20px;">
-                <label for="txtImageURL">Image URL</label>
-                <input id="txtImageURL" class="w3-input w3-border" type="text" maxlength="150" ng-model="imageUrlModel">
+                <label for="txtImageFile">Image</label>
+                <input id="txtImageFile" class="w3-input w3-border" type="file" accept="image/jpeg,image/png,image/gif,image/webp"
+                    onchange="angular.element(this).scope().imageFileSelected(this.files[0])">
+                <small ng-if="heroId">Leave empty to keep the current image.</small>
             </div>
             <div style="margin-bottom: 20px;">
                 <div ref="divRoles">

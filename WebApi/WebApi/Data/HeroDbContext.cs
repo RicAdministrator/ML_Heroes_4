@@ -16,42 +16,42 @@ namespace WebApi.Data
                 {
                     Id = 1,
                     Name = "Gloo",
-                    ImageUrl = "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_642/100_8b401d50920f2359060a9c7a3c833df1.png",
+                    ImageUrl = "https://localhost:7179/uploads/heroes/100_8b401d50920f2359060a9c7a3c833df1.png",
                     Description = "A mysterious creature that can split into many smaller ones."
                 },
                 new Hero
                 {
                     Id = 2,
                     Name = "Lukas",
-                    ImageUrl = "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png",
+                    ImageUrl = "https://localhost:7179/uploads/heroes/100_454c13b2de7b7d1a20fbf553c620510d.png",
                     Description = "A legendary Sacred Beast that can take the form of a ranbunctious young man."
                 },
                 new Hero
                 {
                     Id = 3,
                     Name = "Nolan",
-                    ImageUrl = "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_0495066df0d828c149e7fe89aa63078b.png",
+                    ImageUrl = "https://localhost:7179/uploads/heroes/100_0495066df0d828c149e7fe89aa63078b.png",
                     Description = "A scholar that wanders the universe with split souls to save his daughter."
                 },
                 new Hero
                 {
                     Id = 4,
                     Name = "Zhuxin",
-                    ImageUrl = "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_13cfeec4bec7a27a09677e519f1ef9d2.png",
+                    ImageUrl = "https://localhost:7179/uploads/heroes/100_13cfeec4bec7a27a09677e519f1ef9d2.png",
                     Description = "A mysterious young woman who guides the ember butterflies using her Lantern ..."
                 },
                 new Hero
                 {
                     Id = 5,
                     Name = "Hanabi",
-                    ImageUrl = "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_85d213390613bbc09220cf1d9f64c5c0.png",
+                    ImageUrl = "https://localhost:7179/uploads/heroes/100_85d213390613bbc09220cf1d9f64c5c0.png",
                     Description = "Leader of the Scarlet Sect, in the Scarlet Shadow of the Cadia Riverlands."
                 },
                 new Hero
                 {
                     Id = 6,
                     Name = "Lesley",
-                    ImageUrl = "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f4f42410c90f84e4d46b129d5e8887e8.png",
+                    ImageUrl = "https://localhost:7179/uploads/heroes/100_f4f42410c90f84e4d46b129d5e8887e8.png",
                     Description = "Adopted daughter of House Vance, a clandestine sniper."
                 }
             );

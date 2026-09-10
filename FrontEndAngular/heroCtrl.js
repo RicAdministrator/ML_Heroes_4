@@ -8,9 +8,13 @@ app.controller("heroCtrl", function ($scope, $http) {
         $scope.heroId = null;
 
         $scope.nameModel = "";
+        $scope.imageFileModel = null;
         $scope.imageUrlModel = "";
         $scope.descriptionModel = "";
         $scope.roleIdsModel = {};
+        $scope.imageFileModel = null;
+        var imageFileInput = document.getElementById("txtImageFile");
+        if (imageFileInput) imageFileInput.value = "";
 
         $scope.saveErrors = [];
     }
@@ -38,6 +42,12 @@ app.controller("heroCtrl", function ($scope, $http) {
     $scope.getRoleNames = function (hero) {
         if (!hero.roles || !hero.roles.length) return '';
         return hero.roles.map(function (r) { return r.heroRole; }).join(' / ');
+    };
+
+    $scope.imageFileSelected = function (file) {
+        $scope.$apply(function () {
+            $scope.imageFileModel = file || null;
+        });
     };
 
     $scope.heroMatchesSearch = function (hero) {
@@ -71,12 +81,13 @@ app.controller("heroCtrl", function ($scope, $http) {
         $scope.successMsg = "";
     }
 
-    $scope.updateClicked = function (id, name, imageUrl, description, roles) {
+    $scope.updateClicked = function (id, name, description, roles) {
         $scope.resetSearchMessages();
 
         $scope.heroId = id;
         $scope.nameModel = name;
-        $scope.imageUrlModel = imageUrl;
+        $scope.imageUrlModel = "";
+        $scope.imageFileModel = null;
         $scope.descriptionModel = description;
         $scope.roleIdsModel = {};
         if (Array.isArray(roles)) {
@@ -120,16 +131,24 @@ app.controller("heroCtrl", function ($scope, $http) {
             return; // If there are errors, do not proceed with saving
         }
 
-        const heroData = {
-            name: $scope.nameModel,
-            imageUrl: $scope.imageUrlModel,
-            description: $scope.descriptionModel,
-            roleIds: selectedRoleIds
+        const heroData = new FormData();
+        heroData.append("name", $scope.nameModel.trim());
+        heroData.append("description", $scope.descriptionModel || "");
+        selectedRoleIds.forEach(function (roleId) {
+            heroData.append("roleIds", roleId);
+        });
+        if ($scope.imageFileModel) {
+            heroData.append("imageFile", $scope.imageFileModel);
+        }
+
+        const requestConfig = {
+            transformRequest: angular.identity,
+            headers: { "Content-Type": undefined }
         };
 
         if ($scope.heroId) {
             // Update existing hero
-            $http.put("https://localhost:7179/api/Hero/" + $scope.heroId, heroData)
+            $http.put("https://localhost:7179/api/Hero/" + $scope.heroId, heroData, requestConfig)
                 .then(function (response) {
                     $scope.successMsg = "Hero updated successfully!";
                     $scope.resetUpsertForm();
@@ -146,7 +165,7 @@ app.controller("heroCtrl", function ($scope, $http) {
                 });
         } else {
             // Add new hero
-            $http.post("https://localhost:7179/api/Hero", heroData)
+            $http.post("https://localhost:7179/api/Hero", heroData, requestConfig)
                 .then(function (response) {
                     $scope.successMsg = "Hero added successfully!";
                     $scope.resetUpsertForm();
@@ -212,6 +231,7 @@ app.controller("heroCtrl", function ($scope, $http) {
     $scope.imageUrlModel = "";
     $scope.roleIdsModel = {};
     $scope.descriptionModel = "";
+    $scope.imageFileModel = null;
     $scope.nameSearchModel = "";
     $scope.roleSearchModel = "";
     $scope.descriptionSearchModel = "";
