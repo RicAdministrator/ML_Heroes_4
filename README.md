@@ -26,6 +26,12 @@ How to Drop Create a DB:
 5. Package Manager Console > Run "Update-Database". This will create the db.
 6. Check tables using ML_Heroes_4\SqlQueries\queries.sql
 
+## Image Files
+
+How to Reset Hero Image Files:
+1. Delete all images in ML_Heroes_4\WebApi\WebApi\wwwroot\uploads\heroes folder
+2. Copy all images from ML_Heroes_4\WebApi\WebApi\wwwroot\uploads\DropCreateHeroes to ML_Heroes_4\WebApi\WebApi\wwwroot\uploads\heroes
+
 ## API
 How to Run Scalar to Test Endpoints:
 1. Open WebApi project in Visual Studio
