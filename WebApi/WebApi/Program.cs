@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using WebApi.Data;
+using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ImageFileService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

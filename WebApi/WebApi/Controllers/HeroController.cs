@@ -5,21 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.DTOs;
 using WebApi.Models;
-using System.Security.Cryptography;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HeroController(HeroDbContext context, IWebHostEnvironment environment) : ControllerBase
+    public class HeroController(HeroDbContext context, ImageFileService imageFileService) : ControllerBase
     {
         private readonly HeroDbContext _context = context;
-        private readonly IWebHostEnvironment _environment = environment;
-        private const long MaxImageSize = 5 * 1024 * 1024;
-        private static readonly HashSet<string> AllowedImageExtensions = new(StringComparer.OrdinalIgnoreCase)
-        {
-            ".jpg", ".jpeg", ".png", ".gif", ".webp"
-        };
+        private readonly ImageFileService _imageFileService = imageFileService;
 
         [HttpGet]
         public async Task<ActionResult<List<Hero>>> GetHeroes()
@@ -45,7 +40,7 @@ namespace WebApi.Controllers
             if (dto is null)
                 return BadRequest();
 
-            var imageValidation = ValidateImage(dto.ImageFile);
+            var imageValidation = _imageFileService.ValidateImage(dto.ImageFile);
             if (imageValidation is not null)
                 return BadRequest(imageValidation);
 
@@ -55,7 +50,7 @@ namespace WebApi.Controllers
                 Description = dto.Description
             };
 
-            hero.ImageUrl = await SaveImageAsync(dto.ImageFile);
+            hero.ImageUrl = await _imageFileService.SaveImageAsync(dto.ImageFile, Request, "heroes");
 
             if (dto.RoleIds != null && dto.RoleIds.Count > 0)
             {
@@ -76,7 +71,7 @@ namespace WebApi.Controllers
             if (hero is null)
                 return NotFound();
 
-            var imageValidation = ValidateImage(dto.ImageFile);
+            var imageValidation = _imageFileService.ValidateImage(dto.ImageFile);
             if (imageValidation is not null)
                 return BadRequest(imageValidation);
 
@@ -86,8 +81,8 @@ namespace WebApi.Controllers
             var previousImageUrl = hero.ImageUrl;
             if (dto.ImageFile is not null)
             {
-                hero.ImageUrl = await SaveImageAsync(dto.ImageFile);
-                DeleteImage(previousImageUrl);
+                hero.ImageUrl = await _imageFileService.SaveImageAsync(dto.ImageFile, Request, "heroes");
+                _imageFileService.DeleteImage(previousImageUrl, "heroes");
             }
 
             // Remove all existing roles
@@ -112,7 +107,7 @@ namespace WebApi.Controllers
             if (hero is null)
                 return NotFound();
 
-            DeleteImage(hero.ImageUrl);
+            _imageFileService.DeleteImage(hero.ImageUrl, "heroes");
 
             // Remove all roles from the hero (clears join table entries)
             hero.Roles?.Clear();
@@ -123,55 +118,5 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        private static string? ValidateImage(IFormFile? imageFile)
-        {
-            if (imageFile is null)
-                return null;
-
-            var extension = Path.GetExtension(imageFile.FileName);
-            if (!AllowedImageExtensions.Contains(extension))
-                return "Only JPG, JPEG, PNG, GIF, and WEBP images are allowed.";
-
-            if (!imageFile.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
-                return "The uploaded file must be an image.";
-
-            if (imageFile.Length == 0 || imageFile.Length > MaxImageSize)
-                return "The image must be between 1 byte and 5 MB.";
-
-            return null;
-        }
-
-        private async Task<string?> SaveImageAsync(IFormFile? imageFile)
-        {
-            if (imageFile is null)
-                return null;
-
-            var uploadDirectory = Path.Combine(_environment.WebRootPath ?? Path.Combine(_environment.ContentRootPath, "wwwroot"), "uploads", "heroes");
-            Directory.CreateDirectory(uploadDirectory);
-
-            var extension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
-            var fileName = $"{Convert.ToHexString(RandomNumberGenerator.GetBytes(16))}{extension}";
-            var filePath = Path.Combine(uploadDirectory, fileName);
-
-            await using var stream = System.IO.File.Create(filePath);
-            await imageFile.CopyToAsync(stream);
-
-            return $"{Request.Scheme}://{Request.Host}/uploads/heroes/{fileName}";
-        }
-
-        private void DeleteImage(string? imageUrl)
-        {
-            if (string.IsNullOrWhiteSpace(imageUrl))
-                return;
-
-            var fileName = Path.GetFileName(imageUrl);
-            if (string.IsNullOrWhiteSpace(fileName))
-                return;
-
-            var uploadDirectory = Path.Combine(_environment.WebRootPath ?? Path.Combine(_environment.ContentRootPath, "wwwroot"), "uploads", "heroes");
-            var filePath = Path.Combine(uploadDirectory, fileName);
-            if (System.IO.File.Exists(filePath))
-                System.IO.File.Delete(filePath);
-        }
     }
 }
