@@ -85,11 +85,11 @@ namespace WebApi.Migrations
                 columns: new[] { "Id", "HeroRole", "KeyAttributes", "LogoUrl", "PrimaryFunction" },
                 values: new object[,]
                 {
-                    { 1, "Tank", "High health, defense, and crowd control.", "https://static.wikia.nocookie.net/mobile-legends/images/f/f0/Tank_Icon.png", "Protect teammates, soak damage, and initiate team fights." },
-                    { 2, "Fighter", "Balanced stats, good damage output, and decent survivability.", "https://static.wikia.nocookie.net/mobile-legends/images/1/1a/Fighter_Icon.png", "Balance damage and durability, capable of engaging in fights and soaking damage." },
-                    { 3, "Assassin", "High burst damage, mobility, and stealth.", "https://static.wikia.nocookie.net/mobile-legends/images/3/3f/Assassin_Icon.png", "Quickly eliminate enemy heroes in team fights." },
-                    { 4, "Mage", "High magic power, magical damage, and often crowd control.", "https://static.wikia.nocookie.net/mobile-legends/images/5/53/Mage_Icon.png", "Deal high magic damage, often with range and crowd control." },
-                    { 5, "Marksman", "High attack speed, physical damage, and ranged attack.", "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Marksman_Icon.png", "Deal high physical damage, primarily from a distance." }
+                    { 1, "Tank", "High health, defense, and crowd control.", "https://localhost:7179/uploads/roles/100_0495066df0d828c149e7fe89aa63078b.webp", "Protect teammates, soak damage, and initiate team fights." },
+                    { 2, "Fighter", "Balanced stats, good damage output, and decent survivability.", "https://localhost:7179/uploads/roles/100_13cfeec4bec7a27a09677e519f1ef9d2.webp", "Balance damage and durability, capable of engaging in fights and soaking damage." },
+                    { 3, "Assassin", "High burst damage, mobility, and stealth.", "https://localhost:7179/uploads/roles/100_8b401d50920f2359060a9c7a3c833df1.webp", "Quickly eliminate enemy heroes in team fights." },
+                    { 4, "Mage", "High magic power, magical damage, and often crowd control.", "https://localhost:7179/uploads/roles/100_85d213390613bbc09220cf1d9f64c5c0.webp", "Deal high magic damage, often with range and crowd control." },
+                    { 5, "Marksman", "High attack speed, physical damage, and ranged attack.", "https://localhost:7179/uploads/roles/100_454c13b2de7b7d1a20fbf553c620510d.webp", "Deal high physical damage, primarily from a distance." }
                 });
 
             migrationBuilder.InsertData(

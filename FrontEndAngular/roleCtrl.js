@@ -9,6 +9,12 @@ app.controller("roleCtrl", function ($scope, $http) {
             });
     }
 
+    $scope.imageFileSelected = function (file) {
+        $scope.$apply(function () {
+            $scope.imageFileModel = file || null;
+        });
+    };
+
     $scope.addClicked = function () {
         $scope.resetSearchMessages();
         $scope.activeSection = 'upsert';
@@ -19,12 +25,13 @@ app.controller("roleCtrl", function ($scope, $http) {
         $scope.activeSection = 'search';
     }
 
-    $scope.updateClicked = function (id, heroRole, logoUrl, primaryFunction, keyAttributes) {
+    $scope.updateClicked = function (id, heroRole, primaryFunction, keyAttributes) {
         $scope.resetSearchMessages();
 
         $scope.roleId = id;
         $scope.heroRoleModel = heroRole;
-        $scope.logoUrlModel = logoUrl;
+        $scope.logoUrlModel = "";
+        $scope.imageFileModel = null;
         $scope.primaryFunctionModel = primaryFunction;
         $scope.keyAttributesModel = keyAttributes;
 
@@ -35,9 +42,13 @@ app.controller("roleCtrl", function ($scope, $http) {
         $scope.roleId = null;
 
         $scope.heroRoleModel = "";
+        $scope.imageFileModel = null;
         $scope.logoUrlModel = "";
         $scope.primaryFunctionModel = "";
         $scope.keyAttributesModel = "";
+        $scope.imageFileModel = null;
+        var imageFileInput = document.getElementById("txtImageFile");
+        if (imageFileInput) imageFileInput.value = "";
 
         $scope.saveErrors = "";
     }
@@ -55,16 +66,22 @@ app.controller("roleCtrl", function ($scope, $http) {
             return;
         }
 
-        var roleData = {
-            heroRole: $scope.heroRoleModel,
-            logoUrl: $scope.logoUrlModel,
-            primaryFunction: $scope.primaryFunctionModel,
-            keyAttributes: $scope.keyAttributesModel
+        const roleData = new FormData();
+        roleData.append("heroRole", $scope.heroRoleModel.trim());
+        roleData.append("primaryFunction", $scope.primaryFunctionModel.trim());
+        roleData.append("keyAttributes", $scope.keyAttributesModel.trim());
+        if ($scope.imageFileModel) {
+            roleData.append("imageFile", $scope.imageFileModel);
+        }
+
+        const requestConfig = {
+            transformRequest: angular.identity,
+            headers: { "Content-Type": undefined }
         };
 
         if ($scope.roleId) {
             // Update existing role
-            $http.put("https://localhost:7179/api/Role/" + $scope.roleId, roleData)
+            $http.put("https://localhost:7179/api/Role/" + $scope.roleId, roleData, requestConfig)
                 .then(function (response) {
                     $scope.successMsg = "Role updated successfully!";
                     $scope.resetUpsertForm();
@@ -81,7 +98,7 @@ app.controller("roleCtrl", function ($scope, $http) {
                 });
         } else {
             // Add new role
-            $http.post("https://localhost:7179/api/Role", roleData)
+            $http.post("https://localhost:7179/api/Role", roleData, requestConfig)
                 .then(function (response) {
                     $scope.successMsg = "Role added successfully!";
                     $scope.resetUpsertForm();
@@ -164,6 +181,7 @@ app.controller("roleCtrl", function ($scope, $http) {
 
     $scope.heroRoleModel = "";
     $scope.logoUrlModel = "";
+    $scope.imageFileModel = null;
     $scope.primaryFunctionModel = "";
     $scope.keyAttributesModel = "";
 

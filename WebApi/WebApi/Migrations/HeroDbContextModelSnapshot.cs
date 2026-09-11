@@ -171,7 +171,7 @@ namespace WebApi.Migrations
                             Id = 1,
                             HeroRole = "Tank",
                             KeyAttributes = "High health, defense, and crowd control.",
-                            LogoUrl = "https://static.wikia.nocookie.net/mobile-legends/images/f/f0/Tank_Icon.png",
+                            LogoUrl = "https://localhost:7179/uploads/roles/100_0495066df0d828c149e7fe89aa63078b.webp",
                             PrimaryFunction = "Protect teammates, soak damage, and initiate team fights."
                         },
                         new
@@ -179,7 +179,7 @@ namespace WebApi.Migrations
                             Id = 2,
                             HeroRole = "Fighter",
                             KeyAttributes = "Balanced stats, good damage output, and decent survivability.",
-                            LogoUrl = "https://static.wikia.nocookie.net/mobile-legends/images/1/1a/Fighter_Icon.png",
+                            LogoUrl = "https://localhost:7179/uploads/roles/100_13cfeec4bec7a27a09677e519f1ef9d2.webp",
                             PrimaryFunction = "Balance damage and durability, capable of engaging in fights and soaking damage."
                         },
                         new
@@ -187,7 +187,7 @@ namespace WebApi.Migrations
                             Id = 3,
                             HeroRole = "Assassin",
                             KeyAttributes = "High burst damage, mobility, and stealth.",
-                            LogoUrl = "https://static.wikia.nocookie.net/mobile-legends/images/3/3f/Assassin_Icon.png",
+                            LogoUrl = "https://localhost:7179/uploads/roles/100_8b401d50920f2359060a9c7a3c833df1.webp",
                             PrimaryFunction = "Quickly eliminate enemy heroes in team fights."
                         },
                         new
@@ -195,7 +195,7 @@ namespace WebApi.Migrations
                             Id = 4,
                             HeroRole = "Mage",
                             KeyAttributes = "High magic power, magical damage, and often crowd control.",
-                            LogoUrl = "https://static.wikia.nocookie.net/mobile-legends/images/5/53/Mage_Icon.png",
+                            LogoUrl = "https://localhost:7179/uploads/roles/100_85d213390613bbc09220cf1d9f64c5c0.webp",
                             PrimaryFunction = "Deal high magic damage, often with range and crowd control."
                         },
                         new
@@ -203,7 +203,7 @@ namespace WebApi.Migrations
                             Id = 5,
                             HeroRole = "Marksman",
                             KeyAttributes = "High attack speed, physical damage, and ranged attack.",
-                            LogoUrl = "https://static.wikia.nocookie.net/mobile-legends/images/1/10/Marksman_Icon.png",
+                            LogoUrl = "https://localhost:7179/uploads/roles/100_454c13b2de7b7d1a20fbf553c620510d.webp",
                             PrimaryFunction = "Deal high physical damage, primarily from a distance."
                         });
                 });
