@@ -34,4 +34,4 @@ publish/
 /WebApi/WebApi/wwwroot/uploads/heroes/
 
 # Uploaded role images
-#/WebApi/WebApi/wwwroot/uploads/roles/
+/WebApi/WebApi/wwwroot/uploads/roles/
