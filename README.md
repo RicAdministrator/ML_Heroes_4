@@ -45,7 +45,7 @@ How to Create a New Controller:
 How to Run the Angular Web App
 1. Open ML_Heroes_4 folder in VS Code
 2. E:\Git\ML_Heroes_4\FrontEndAngular> python -m http.server
-3. Open `http://localhost:8000/MobileLegends.htm` in your browser
+3. Open http://localhost:8000/MobileLegends.htm in your browser
 
 How to Auto Indent Code:
 1. Shift+Alt+F
